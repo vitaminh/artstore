@@ -17,5 +17,8 @@ namespace ArtStore.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+        
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Artwork> Artwork { get; set; }
     }
 }
