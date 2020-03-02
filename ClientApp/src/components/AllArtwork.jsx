@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import store, { FETCH_ALL_ARTWORK } from '../store';
 
-class Artwork extends React.Component {
+class AllArtwork extends React.Component {
   componentDidMount() {
     if (!this.props.artwork.loaded) {
       store.dispatch({type: FETCH_ALL_ARTWORK})
@@ -28,8 +28,8 @@ const mapState = state => ({
   artwork: state.artwork
 });
 
-const ArtworkContainer = connect(
+const AllArtworkContainer = connect(
   mapState
-)(Artwork);
+)(AllArtwork);
 
-export default withRouter(ArtworkContainer);
+export default withRouter(AllArtworkContainer);

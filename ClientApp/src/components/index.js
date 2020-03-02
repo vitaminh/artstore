@@ -4,5 +4,5 @@
  * having to figure out which file they belong to!
  */
 
-export { default as Artwork } from './Artwork';
+export { default as AllArtwork } from './AllArtwork';
 
