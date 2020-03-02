@@ -12,23 +12,23 @@ namespace ArtStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArtistController : ControllerBase
+    public class ArtistsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ArtistController(ApplicationDbContext context)
+        public ArtistsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Artist
+        // GET: api/Artists
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Artist>>> GetArtists()
         {
             return await _context.Artists.ToListAsync();
         }
 
-        // GET: api/Artist/5
+        // GET: api/Artists/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Artist>> GetArtist(int id)
         {
@@ -42,7 +42,7 @@ namespace ArtStore.Controllers
             return artist;
         }
 
-        // PUT: api/Artist/5
+        // PUT: api/Artists/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
@@ -74,7 +74,7 @@ namespace ArtStore.Controllers
             return NoContent();
         }
 
-        // POST: api/Artist
+        // POST: api/Artists
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
@@ -86,7 +86,7 @@ namespace ArtStore.Controllers
             return CreatedAtAction("GetArtist", new { id = artist.Id }, artist);
         }
 
-        // DELETE: api/Artist/5
+        // DELETE: api/Artists/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Artist>> DeleteArtist(int id)
         {

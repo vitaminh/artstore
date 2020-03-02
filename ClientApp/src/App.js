@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
+import {
+  Artwork
+} from './components';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
@@ -17,6 +20,7 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
+        <Route exact path='/artwork' component={Artwork} />
         <Route path='/counter' component={Counter} />
         <AuthorizeRoute path='/fetch-data' component={FetchData} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
