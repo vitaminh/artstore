@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import {
-  AllArtwork
+  AllArtwork,
+  Artist
 } from './components';
 import { Layout } from './components/Layout';
 import { FetchData } from './components/FetchData';
@@ -19,6 +20,7 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={AllArtwork} />
+        <Route path='/artists/:id' component={Artist} />
         <Route path='/counter' component={Counter} />
         <AuthorizeRoute path='/fetch-data' component={FetchData} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
