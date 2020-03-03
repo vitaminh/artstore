@@ -32,7 +32,11 @@ namespace ArtStore.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Artwork>> GetArtwork(int id)
         {
-            var artwork = await _context.Artwork.FindAsync(id);
+            var artwork = await _context
+                                    .Artwork
+                                    .Where(a => a.Id == id)
+                                    .Include(a => a.Artist)
+                                    .FirstOrDefaultAsync();
 
             if (artwork == null)
             {

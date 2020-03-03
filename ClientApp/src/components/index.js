@@ -6,3 +6,4 @@
 
 export { default as AllArtwork } from './AllArtwork';
 export { default as Artist } from './Artist';
+export { default as Artwork } from './Artwork';
