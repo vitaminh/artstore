@@ -23,8 +23,6 @@ namespace ArtStore.Controllers
             
             Cart currentCart = HttpContext.Session.GetObject<Cart>("Cart");
 
-            currentCart.items.Add(new CartItem());
-
             HttpContext.Session.SetObject("Cart", currentCart);
 
             return HttpContext.Session.GetObject<Cart>("Cart");
@@ -53,14 +51,22 @@ namespace ArtStore.Controllers
 
             return HttpContext.Session.GetObject<Cart>("Cart");
         }
+        
+        // DELETE: api/cart
+        // Deletes the entire cart
+        [HttpDelete]
+        public async Task<ActionResult<Cart>> DeleteCart()
+        {
+            HttpContext.Session.SetObject("Cart", new Cart());
+            return HttpContext.Session.GetObject<Cart>("Cart");
+        }
 
         // Use to ensure that a cart exists before attempting to alter it
         private void InitializeCart()
         {
             if (HttpContext.Session.GetObject<Cart>("Cart") == null)
             {
-                var newCart = new Cart();
-                HttpContext.Session.SetObject("Cart", newCart);
+                HttpContext.Session.SetObject("Cart", new Cart());
             }
         }
     }
