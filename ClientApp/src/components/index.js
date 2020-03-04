@@ -8,3 +8,4 @@ export { default as AllArtists } from './AllArtists';
 export { default as AllArtwork } from './AllArtwork';
 export { default as Artist } from './Artist';
 export { default as Artwork } from './Artwork';
+export { default as Cart } from './Cart';

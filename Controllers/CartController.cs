@@ -33,6 +33,7 @@ namespace ArtStore.Controllers
         [HttpPost]
         public async Task<ActionResult<Cart>> AddToCart(CartItem cartItem)
         {
+            InitializeCart();
             Cart currentCart = HttpContext.Session.GetObject<Cart>("Cart");
 
             CartItem currentItem = currentCart.items.Find(i => 
@@ -85,12 +86,6 @@ namespace ArtStore.Controllers
     {
         public int itemId { get; set; }
         public int quantity { get; set; }
-
-        public CartItem()
-        {
-            itemId = -1;
-            quantity = 0;
-        }
     }
     
     public static class SessionExtensions

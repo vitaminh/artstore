@@ -1,10 +1,12 @@
 import { all } from 'redux-saga/effects';
 
-import { fetchAllArtwork, watchFetchAllArtwork } from './artworkSagas';
+import { watchFetchAllArtwork } from './artworkSagas';
+import { watchAddToCart, watchFetchCart } from './cartSagas';
 
 export default function* rootSaga() {
   yield all([
-    fetchAllArtwork(),
-    watchFetchAllArtwork()
+    watchAddToCart(),
+    watchFetchAllArtwork(),
+    watchFetchCart()
   ])
 }

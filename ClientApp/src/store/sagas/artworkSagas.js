@@ -8,6 +8,7 @@ import { retrievedArtwork } from '../reducers/artworkReducer';
 
 export function* fetchAllArtwork() {
   const response = yield call(async() => await axios.get('/api/artwork'));
+  console.log(response);
   const artwork = response.data;
   yield put(retrievedArtwork(artwork));
 }

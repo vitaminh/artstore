@@ -3,11 +3,15 @@ import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { artworkReducer } from './reducers';
+import {
+  artworkReducer,
+  cartReducer
+} from './reducers';
 import rootSaga from './sagas';
 
 const reducer = combineReducers({
-  artwork: artworkReducer
+  artwork: artworkReducer,
+  cart: cartReducer
 });
 const sagaMiddleware = createSagaMiddleware();
 const middleware = composeWithDevTools(

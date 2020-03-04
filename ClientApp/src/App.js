@@ -4,7 +4,8 @@ import {
   AllArtists,
   AllArtwork,
   Artist,
-  Artwork
+  Artwork,
+  Cart
 } from './components';
 import { Layout } from './components/Layout';
 import { FetchData } from './components/FetchData';
@@ -23,8 +24,10 @@ export default class App extends Component {
       <Layout>
         <Route exact path='/artists' component={AllArtists} />
         <Route exact path='/' component={AllArtwork} />
-        <Route path='/artists/:id' component={Artist} />
-        <Route path='/artwork/:id' component={Artwork} />
+        <Route exact path='/artists/:id' component={Artist} />
+        <Route exact path='/artwork' component={AllArtwork} />
+        <Route exact path='/artwork/:id' component={Artwork} />
+        <Route exact path='/cart' component={Cart} />
         <Route path='/counter' component={Counter} />
         <AuthorizeRoute path='/fetch-data' component={FetchData} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />

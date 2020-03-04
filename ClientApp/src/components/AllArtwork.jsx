@@ -16,9 +16,17 @@ class AllArtwork extends React.Component {
       return <div>Loading Artwork...</div>
     }
 
+    const artwork = this.props.artwork.artwork;
+
     return (
       <div>
-        <p>{this.props.artwork.artwork[0].title}</p>
+        <ul>
+          {artwork.map(art => {
+            return (
+              <li key={art.id}>{art.title} - {art.artist.firstName} {art.artist.lastName}</li>
+            )
+          })}
+        </ul>
       </div>
     )
   }
