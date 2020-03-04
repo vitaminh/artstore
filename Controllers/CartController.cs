@@ -9,7 +9,7 @@ using ArtStore.Data;
 using ArtStore.Models;
 using Newtonsoft.Json;
 
-namespace Artstore.Controllers
+namespace ArtStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,13 +19,9 @@ namespace Artstore.Controllers
         [HttpGet]
         public async Task<ActionResult<Cart>> GetCart()
         {
-            if (HttpContext.Session.GetObject<Cart>("Cart") == null)
-            {
-                var newCart = new Cart();
-                HttpContext.Session.SetObject("Cart", newCart);
-            }
+            InitializeCart();
             
-            var currentCart = HttpContext.Session.GetObject<Cart>("Cart");
+            Cart currentCart = HttpContext.Session.GetObject<Cart>("Cart");
 
             currentCart.items.Add(new CartItem());
 
@@ -33,8 +29,42 @@ namespace Artstore.Controllers
 
             return HttpContext.Session.GetObject<Cart>("Cart");
         }
-    }
+        
+        // POST: api/cart
+        // Add item to the cart / Update quantity of item in cart
+        [HttpPost]
+        public async Task<ActionResult<Cart>> AddToCart(CartItem cartItem)
+        {
+            Cart currentCart = HttpContext.Session.GetObject<Cart>("Cart");
 
+            CartItem currentItem = currentCart.items.Find(i => 
+                i.itemId == cartItem.itemId);
+
+            if (currentItem == null)
+            {
+                currentCart.items.Add(cartItem);
+            }
+            else
+            {
+                currentItem.quantity += cartItem.quantity;
+            }
+
+            HttpContext.Session.SetObject("Cart", currentCart);
+
+            return HttpContext.Session.GetObject<Cart>("Cart");
+        }
+
+        // Use to ensure that a cart exists before attempting to alter it
+        private void InitializeCart()
+        {
+            if (HttpContext.Session.GetObject<Cart>("Cart") == null)
+            {
+                var newCart = new Cart();
+                HttpContext.Session.SetObject("Cart", newCart);
+            }
+        }
+    }
+    
     public class Cart
     {
         public List<CartItem> items { get; set; }
@@ -48,10 +78,12 @@ namespace Artstore.Controllers
     public class CartItem
     {
         public int itemId { get; set; }
+        public int quantity { get; set; }
 
         public CartItem()
         {
             itemId = -1;
+            quantity = 0;
         }
     }
     
