@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 
+export { default as AllArtists } from './AllArtists';
 export { default as AllArtwork } from './AllArtwork';
 export { default as Artist } from './Artist';
 export { default as Artwork } from './Artwork';

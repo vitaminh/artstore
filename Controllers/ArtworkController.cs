@@ -25,7 +25,9 @@ namespace ArtStore.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Artwork>>> GetArtwork()
         {
-            return await _context.Artwork.Include(a => a.Artist).ToListAsync();
+            return await _context
+                            .Artwork.Include(a => a.Artist)
+                            .ToListAsync();
         }
 
         // GET: api/Artwork/5
