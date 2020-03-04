@@ -19,7 +19,7 @@ namespace ArtStore.Controllers
         [HttpGet]
         public async Task<ActionResult<Cart>> GetCart()
         {
-            InitializeCart();
+            await Task.Run(InitializeCart);
             
             Cart currentCart = HttpContext.Session.GetObject<Cart>("Cart");
 
@@ -33,7 +33,7 @@ namespace ArtStore.Controllers
         [HttpPost]
         public async Task<ActionResult<Cart>> AddToCart(CartItem cartItem)
         {
-            InitializeCart();
+            await Task.Run(InitializeCart);
             Cart currentCart = HttpContext.Session.GetObject<Cart>("Cart");
 
             CartItem currentItem = currentCart.items.Find(i => 
@@ -87,6 +87,7 @@ namespace ArtStore.Controllers
         public int itemId { get; set; }
         public string title { get; set; }
         public int quantity { get; set; }
+        public int price { get; set; }
     }
     
     public static class SessionExtensions

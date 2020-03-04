@@ -39,7 +39,8 @@ class Artwork extends React.Component {
       type: ADD_TO_CART,
       itemId: this.props.match.params.id,
       title: this.state.artwork.title,
-      quantity: 1
+      quantity: 1,
+      price: this.state.artwork.price
     })
   }
 
@@ -58,6 +59,7 @@ class Artwork extends React.Component {
     return (
       <div>
         <p>{`${artwork.title}`}</p>
+        <p>{`${artwork.price}`}</p>
         <button onClick={this.addToCart}>
           Add to Cart
         </button>

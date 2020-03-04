@@ -15,7 +15,11 @@ class Cart extends React.Component {
     }
 
     const items = this.props.cart.cart.items.map((item) =>
-      <li key={item.itemId}>{item.title}, {item.quantity}</li>
+      <li key={item.itemId}>
+        <p>Title: {item.title}</p>
+        <p>Quantity: {item.quantity}</p>
+        <p>Total Cost: {item.quantity * item.price}</p>
+      </li>
     );
 
     return (

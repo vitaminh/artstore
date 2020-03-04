@@ -18,7 +18,8 @@ export function* addToCart(action) {
   const item = {
     itemId: action.itemId,
     title: action.title,
-    quantity: action.quantity
+    quantity: action.quantity,
+    price: action.price
   };
   const response = yield call(async () => await axios.post('/api/cart', item));
   const cart = response.data;
