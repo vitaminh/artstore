@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import {
+  AllArtists,
   AllArtwork,
   Artist,
   Artwork
@@ -20,6 +21,7 @@ export default class App extends Component {
   render () {
     return (
       <Layout>
+        <Route exact path='/artists' component={AllArtists} />
         <Route exact path='/' component={AllArtwork} />
         <Route path='/artists/:id' component={Artist} />
         <Route path='/artwork/:id' component={Artwork} />
