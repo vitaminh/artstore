@@ -49,6 +49,9 @@ namespace ArtStore
                 configuration.RootPath = "ClientApp/build";
             });
 
+            services.AddSession();
+            
+            // Eliminate circular references when using eager loading
             services.AddMvc()
                 .AddNewtonsoftJson(options =>
                 {
@@ -77,6 +80,7 @@ namespace ArtStore
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseIdentityServer();
