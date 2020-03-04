@@ -12,10 +12,13 @@ export function* fetchCart() {
   yield put(retrievedCart(cart));
 }
 
-export function* addToCart() {
+export function* addToCart(action) {
+
+  console.log(action);
   const item = {
-    itemId: 1,
-    quantity: 10
+    itemId: action.itemId,
+    title: action.title,
+    quantity: action.quantity
   };
   const response = yield call(async () => await axios.post('/api/cart', item));
   const cart = response.data;

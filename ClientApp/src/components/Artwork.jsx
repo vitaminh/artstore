@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import store, { ADD_TO_CART } from '../store';
+
 class Artwork extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +34,15 @@ class Artwork extends React.Component {
     }
   }
 
+  addToCart = () => {
+    store.dispatch({
+      type: ADD_TO_CART,
+      itemId: this.props.match.params.id,
+      title: this.state.artwork.title,
+      quantity: 1
+    })
+  }
+
   render() {
 
     if (this.state.loading) {
@@ -47,6 +58,9 @@ class Artwork extends React.Component {
     return (
       <div>
         <p>{`${artwork.title}`}</p>
+        <button onClick={this.addToCart}>
+          Add to Cart
+        </button>
       </div>
     )
   }

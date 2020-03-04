@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import store, { FETCH_ALL_ARTWORK } from '../store';
 
@@ -23,7 +23,11 @@ class AllArtwork extends React.Component {
         <ul>
           {artwork.map(art => {
             return (
-              <li key={art.id}>{art.title} - {art.artist.firstName} {art.artist.lastName}</li>
+              <li key={art.id}>
+                <Link to={`/artwork/${art.id}`}>
+                  {art.title} - {art.artist.firstName} {art.artist.lastName}
+                </Link>
+              </li>
             )
           })}
         </ul>

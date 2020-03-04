@@ -85,6 +85,7 @@ namespace ArtStore.Controllers
     public class CartItem
     {
         public int itemId { get; set; }
+        public string title { get; set; }
         public int quantity { get; set; }
     }
     
