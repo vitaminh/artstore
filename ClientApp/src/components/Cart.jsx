@@ -1,12 +1,22 @@
+import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import store, { FETCH_CART } from '../store';
 
+const fetchCartAction = {
+  type: FETCH_CART
+}
+
 class Cart extends React.Component {
   componentDidMount() {
-    store.dispatch({type: FETCH_CART});
+    store.dispatch(fetchCartAction);
+  }
+
+  checkout = async () => {
+    await axios.delete('/api/cart');
+    store.dispatch(fetchCartAction);
   }
 
   render() {
@@ -27,6 +37,9 @@ class Cart extends React.Component {
         <ul>
           {items}
         </ul>
+        <button onClick={this.checkout}>
+          Checkout
+        </button>
       </div>
     )
   }

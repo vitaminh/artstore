@@ -13,8 +13,6 @@ export function* fetchCart() {
 }
 
 export function* addToCart(action) {
-
-  console.log(action);
   const item = {
     itemId: action.itemId,
     title: action.title,
